@@ -1,9 +1,9 @@
 export type Language = "en" | "es" | "ar";
 
 export const languages = [
-  { code: "en" as Language, name: "English", flag: "🇺🇸" },
-  { code: "es" as Language, name: "Español", flag: "🇪🇸" },
-  { code: "ar" as Language, name: "العربية", flag: "🇸🇦" },
+  { code: "en" as Language, name: "English", flag: "us.svg" },
+  { code: "es" as Language, name: "Español", flag: "es.svg" },
+  { code: "ar" as Language, name: "العربية", flag: "sa.svg" },
 ];
 
 export const translations = {
