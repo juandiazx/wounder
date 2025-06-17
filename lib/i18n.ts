@@ -1,16 +1,17 @@
-export type Language = "en" | "es" | "ar"
+export type Language = "en" | "es" | "ar";
 
 export const languages = [
   { code: "en" as Language, name: "English", flag: "🇺🇸" },
   { code: "es" as Language, name: "Español", flag: "🇪🇸" },
   { code: "ar" as Language, name: "العربية", flag: "🇸🇦" },
-]
+];
 
 export const translations = {
   en: {
     // Landing Page
     title: "Check if your wound is infected",
-    subtitle: "Get instant AI-powered analysis of your wound to determine if medical attention is needed",
+    subtitle:
+      "Get instant AI-powered analysis of your wound to determine if medical attention is needed",
     startButton: "Start Wound Check",
     step1Title: "Take Photo",
     step1Desc: "Position your wound in front of the camera",
@@ -21,9 +22,11 @@ export const translations = {
 
     // Camera Interface
     positionTitle: "Position Your Wound",
-    positionDesc: "Center your wound in the camera view and click the capture button when ready",
+    positionDesc:
+      "Center your wound in the camera view and click the capture button when ready",
     positionGuide: "Position wound here",
-    cameraError: "Unable to access camera. Please ensure camera permissions are granted.",
+    cameraError:
+      "Unable to access camera. Please ensure camera permissions are granted.",
     cameraAccessTitle: "Camera Access Required",
     tryAgain: "Try Again",
 
@@ -43,7 +46,8 @@ export const translations = {
       "Your wound appears healthy. We still recommend visiting one of the closest health centers shown below for a professional evaluation and proper wound care guidance.",
     nearbyHealthCenters: "Nearby Health Centers",
     interactiveMap: "Interactive Map",
-    healthCentersNear: "Health centers near your location",
+    healthCenterMapTip:
+      "💡 Tip: Click on any health center marker to view contact information and directions",
 
     // Privacy
     privacyTitle: "Privacy & Anonymity",
@@ -62,7 +66,8 @@ export const translations = {
   es: {
     // Landing Page
     title: "Comprueba si tu herida está infectada",
-    subtitle: "Obtén un análisis instantáneo con IA de tu herida para determinar si necesitas atención médica",
+    subtitle:
+      "Obtén un análisis instantáneo con IA de tu herida para determinar si necesitas atención médica",
     startButton: "Comenzar Revisión",
     step1Title: "Tomar Foto",
     step1Desc: "Posiciona tu herida frente a la cámara",
@@ -73,9 +78,11 @@ export const translations = {
 
     // Camera Interface
     positionTitle: "Posiciona Tu Herida",
-    positionDesc: "Centra tu herida en la vista de la cámara y haz clic en el botón de captura cuando estés listo",
+    positionDesc:
+      "Centra tu herida en la vista de la cámara y haz clic en el botón de captura cuando estés listo",
     positionGuide: "Posiciona la herida aquí",
-    cameraError: "No se puede acceder a la cámara. Por favor, asegúrate de que los permisos de cámara estén otorgados.",
+    cameraError:
+      "No se puede acceder a la cámara. Por favor, asegúrate de que los permisos de cámara estén otorgados.",
     cameraAccessTitle: "Acceso a Cámara Requerido",
     tryAgain: "Intentar de Nuevo",
 
@@ -95,7 +102,8 @@ export const translations = {
       "Tu herida parece saludable. Aún recomendamos visitar uno de los centros de salud más cercanos que se muestran a continuación para una evaluación profesional y orientación sobre el cuidado adecuado de heridas.",
     nearbyHealthCenters: "Centros de Salud Cercanos",
     interactiveMap: "Mapa Interactivo",
-    healthCentersNear: "Centros de salud cerca de tu ubicación",
+    healthCenterMapTip:
+      "💡 Consejo: Haz clic en cualquier marcador de centro de salud para ver la información de contacto y las indicaciones",
 
     // Privacy
     privacyTitle: "Privacidad y Anonimato",
@@ -114,7 +122,8 @@ export const translations = {
   ar: {
     // Landing Page
     title: "تحقق من إصابة جرحك بالعدوى",
-    subtitle: "احصل على تحليل فوري بالذكاء الاصطناعي لجرحك لتحديد ما إذا كنت بحاجة إلى عناية طبية",
+    subtitle:
+      "احصل على تحليل فوري بالذكاء الاصطناعي لجرحك لتحديد ما إذا كنت بحاجة إلى عناية طبية",
     startButton: "بدء فحص الجرح",
     step1Title: "التقاط صورة",
     step1Desc: "ضع جرحك أمام الكاميرا",
@@ -125,9 +134,11 @@ export const translations = {
 
     // Camera Interface
     positionTitle: "ضع جرحك في الموضع",
-    positionDesc: "ضع جرحك في وسط عرض الكاميرا واضغط على زر الالتقاط عندما تكون جاهزاً",
+    positionDesc:
+      "ضع جرحك في وسط عرض الكاميرا واضغط على زر الالتقاط عندما تكون جاهزاً",
     positionGuide: "ضع الجرح هنا",
-    cameraError: "غير قادر على الوصول إلى الكاميرا. يرجى التأكد من منح أذونات الكاميرا.",
+    cameraError:
+      "غير قادر على الوصول إلى الكاميرا. يرجى التأكد من منح أذونات الكاميرا.",
     cameraAccessTitle: "مطلوب الوصول إلى الكاميرا",
     tryAgain: "حاول مرة أخرى",
 
@@ -147,7 +158,8 @@ export const translations = {
       "يبدو جرحك صحياً. ما زلنا نوصي بزيارة أحد المراكز الصحية الأقرب المعروضة أدناه للحصول على تقييم مهني وإرشادات حول العناية المناسبة بالجروح.",
     nearbyHealthCenters: "المراكز الصحية القريبة",
     interactiveMap: "خريطة تفاعلية",
-    healthCentersNear: "المراكز الصحية بالقرب من موقعك",
+    healthCenterMapTip:
+      "💡 نصيحة: انقر على أي علامة مركز صحي لعرض معلومات الاتصال والاتجاهات",
 
     // Privacy
     privacyTitle: "الخصوصية وعدم الكشف عن الهوية",
@@ -163,15 +175,15 @@ export const translations = {
     medicalDisclaimer:
       "إخلاء المسؤولية الطبية: توفر هذه الأداة تحليلاً بمساعدة الذكاء الاصطناعي لأغراض إعلامية فقط ولا يجب أن تحل محل المشورة الطبية المهنية. استشر دائماً المهنيين الصحيين للتشخيص والعلاج الطبي المناسب.",
   },
-}
+};
 
 export function getTranslation(language: Language, key: string): string {
-  const keys = key.split(".")
-  let value: any = translations[language]
+  const keys = key.split(".");
+  let value: any = translations[language];
 
   for (const k of keys) {
-    value = value?.[k]
+    value = value?.[k];
   }
 
-  return value || key
+  return value || key;
 }

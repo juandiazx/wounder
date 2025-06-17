@@ -1,16 +1,41 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { AlertTriangle, CheckCircle, MapPin } from "lucide-react"
-import { useLanguage } from "@/app/page"
+import { Card, CardContent } from "@/components/ui/card";
+import { AlertTriangle, CheckCircle, MapPin } from "lucide-react";
+import { useLanguage } from "@/app/page";
+import { useEffect } from "react";
 
 interface ResultsScreenProps {
-  isInfected: boolean
-  image: string | null
+  isInfected: boolean;
+  image: string | null;
 }
 
-export default function ResultsScreen({ isInfected, image }: ResultsScreenProps) {
-  const { t } = useLanguage()
+export default function ResultsScreen({
+  isInfected,
+  image,
+}: ResultsScreenProps) {
+  const { t, language } = useLanguage();
+
+  // Read out loud the result text when shown
+  useEffect(() => {
+    const text = isInfected ? t("infectedDesc") : t("notInfectedDesc");
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel(); // Stop any ongoing speech
+      const utterance = new window.SpeechSynthesisUtterance(text);
+      // Set language for better pronunciation using context
+      utterance.lang =
+        (language === "es" && "es-ES") ||
+        (language === "ar" && "ar-SA") ||
+        "en-US";
+      window.speechSynthesis.speak(utterance);
+    }
+    // Cleanup: cancel speech on unmount
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [isInfected, t, language]);
 
   return (
     <div className="space-y-8">
@@ -28,7 +53,7 @@ export default function ResultsScreen({ isInfected, image }: ResultsScreenProps)
                     className="w-48 h-36 object-cover rounded-lg border-2 border-gray-200"
                   />
                   {/* Status Icon Overlay */}
-                  <div className="absolute -top-2 -right-2">
+                  <div className="absolute -top-2 -left-2">
                     <div
                       className={`p-2 rounded-full border-2 border-white shadow-lg ${
                         isInfected ? "bg-red-500" : "bg-green-500"
@@ -48,16 +73,24 @@ export default function ResultsScreen({ isInfected, image }: ResultsScreenProps)
             {/* Result Text Section */}
             <div className="flex-1 space-y-4">
               <div>
-                <h3 className={`text-2xl font-bold mb-3 ${isInfected ? "text-red-900" : "text-green-900"}`}>
+                <h3
+                  className={`text-2xl font-bold mb-3 ${
+                    isInfected ? "text-red-900" : "text-green-900"
+                  }`}
+                >
                   {isInfected ? t("infectedTitle") : t("notInfectedTitle")}
                 </h3>
 
                 <div
                   className={`p-4 rounded-lg border-l-4 ${
-                    isInfected ? "bg-red-50 border-red-400 text-red-800" : "bg-green-50 border-green-400 text-green-800"
+                    isInfected
+                      ? "bg-red-50 border-red-400 text-red-800"
+                      : "bg-green-50 border-green-400 text-green-800"
                   }`}
                 >
-                  <p className="text-base leading-relaxed">{isInfected ? t("infectedDesc") : t("notInfectedDesc")}</p>
+                  <p className="text-base leading-relaxed">
+                    {isInfected ? t("infectedDesc") : t("notInfectedDesc")}
+                  </p>
                 </div>
               </div>
             </div>
@@ -73,8 +106,9 @@ export default function ResultsScreen({ isInfected, image }: ResultsScreenProps)
               <MapPin className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-blue-900">{t("nearbyHealthCenters")}</h3>
-              <p className="text-blue-700 text-sm">{t("healthCentersNear")}</p>
+              <h3 className="text-xl font-bold text-blue-900">
+                {t("nearbyHealthCenters")}
+              </h3>
             </div>
           </div>
 
@@ -91,11 +125,11 @@ export default function ResultsScreen({ isInfected, image }: ResultsScreenProps)
 
           <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
             <p className="text-sm text-blue-800 text-center">
-              <strong>💡 Tip:</strong> Click on any health center marker to view contact information and directions
+              {t("healthCenterMapTip")}
             </p>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
