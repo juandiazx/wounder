@@ -1,7 +1,7 @@
 import os
 import requests
 
-API_URL = 'http://127.0.0.1:5000/api/v1/evaluate-wound'
+API_URL = 'http://127.0.0.1:8080/api/v1/evaluate-wound'
 IMAGES_DIR = 'never_seen_images'
 
 mime_types = {

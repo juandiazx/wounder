@@ -1,0 +1,7 @@
+flask
+flask-cors
+keras
+tensorflow==2.18.0
+pillow
+requests
+numpy
