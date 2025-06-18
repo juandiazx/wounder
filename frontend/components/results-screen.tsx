@@ -1,18 +1,25 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { AlertTriangle, CheckCircle, MapPin } from "lucide-react";
+import { AlertTriangle, CheckCircle, MapPin, Info } from "lucide-react";
 import { useLanguage } from "@/app/page";
 import { useEffect } from "react";
+import { type WoundAnalysisResult } from "@/lib/api";
 
 interface ResultsScreenProps {
   isInfected: boolean;
   image: string | null;
+  confidence?: number;
+  analysisResult?: WoundAnalysisResult | null;
+  error?: string | null;
 }
 
 export default function ResultsScreen({
   isInfected,
   image,
+  confidence = 0,
+  analysisResult,
+  error,
 }: ResultsScreenProps) {
   const { t, language } = useLanguage();
 
@@ -72,27 +79,42 @@ export default function ResultsScreen({
 
             {/* Result Text Section */}
             <div className="flex-1 space-y-4">
-              <div>
-                <h3
-                  className={`text-2xl font-bold mb-3 ${
-                    isInfected ? "text-red-900" : "text-green-900"
-                  }`}
-                >
-                  {isInfected ? t("infectedTitle") : t("notInfectedTitle")}
-                </h3>
-
-                <div
-                  className={`p-4 rounded-lg border-l-4 ${
-                    isInfected
-                      ? "bg-red-50 border-red-400 text-red-800"
-                      : "bg-green-50 border-green-400 text-green-800"
-                  }`}
-                >
-                  <p className="text-base leading-relaxed">
-                    {isInfected ? t("infectedDesc") : t("notInfectedDesc")}
-                  </p>
+              {error ? (
+                <div>
+                  <h3 className="text-2xl font-bold mb-3 text-orange-900">
+                    {t("analysisError") || "Analysis Error"}
+                  </h3>
+                  <div className="p-4 rounded-lg border-l-4 bg-orange-50 border-orange-400 text-orange-800">
+                    <p className="text-base leading-relaxed">{error}</p>
+                    <p className="text-sm mt-2 opacity-75">
+                      {t("tryAgainLater") ||
+                        "Please try again later or consult a healthcare professional."}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <h3
+                    className={`text-2xl font-bold mb-3 ${
+                      isInfected ? "text-red-900" : "text-green-900"
+                    }`}
+                  >
+                    {isInfected ? t("infectedTitle") : t("notInfectedTitle")}
+                  </h3>
+
+                  <div
+                    className={`p-4 rounded-lg border-l-4 ${
+                      isInfected
+                        ? "bg-red-50 border-red-400 text-red-800"
+                        : "bg-green-50 border-green-400 text-green-800"
+                    }`}
+                  >
+                    <p className="text-base leading-relaxed">
+                      {isInfected ? t("infectedDesc") : t("notInfectedDesc")}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </CardContent>
