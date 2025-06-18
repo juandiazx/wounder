@@ -1,11 +1,15 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from keras.models import load_model
 from keras.applications.mobilenet_v3 import preprocess_input
 import numpy as np
 import io
+import os
+from datetime import datetime
 from PIL import Image
 
 app = Flask(__name__)
+CORS(app)
 
 # Carga del modelo entrenado
 model = load_model('my_image_classification_model.keras')
@@ -36,8 +40,12 @@ def evaluate_wound():
         img_bytes = file.read()
         if len(img_bytes) > 5 * 1024 * 1024:  # 5MB límite
             return jsonify({'error': 'La imagen es demasiado grande (máx 5MB).'}), 400
-        image = Image.open(io.BytesIO(img_bytes)).convert('RGB')
-        image = image.resize(IMG_SIZE)
+        
+        # Save the received image for inspection
+        original_image = Image.open(io.BytesIO(img_bytes)).convert('RGB')
+        
+        # Process the image for AI analysis
+        image = original_image.resize(IMG_SIZE)
         img_array = np.asarray(image, dtype=np.float32)
         img_array = np.expand_dims(img_array, axis=0)
         img_array = preprocess_input(img_array)
@@ -62,4 +70,4 @@ def evaluate_wound():
         return jsonify({'error': f'Error procesando la imagen: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080)
