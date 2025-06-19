@@ -2,6 +2,8 @@
 
 Wounder is a web application that uses AI to analyze images of wounds and determine if they are infected. It provides a quick and accessible way for users to get an initial assessment of their wound and find nearby health centers if necessary.
 
+***The Vercel deployment only contains the frontend; it is not integrated with the backend server.***
+
 ## Running the Project
 
 ### Prerequisites
