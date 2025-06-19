@@ -4,8 +4,6 @@ from keras.models import load_model
 from keras.applications.mobilenet_v3 import preprocess_input
 import numpy as np
 import io
-import os
-from datetime import datetime
 from PIL import Image
 
 app = Flask(__name__)
